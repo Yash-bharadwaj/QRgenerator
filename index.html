@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qr Code Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>! Qr Code Generator !</h1>
+      <h4>With ♥ by Yash</h4>
+      <div class="box">
+        <h3>Enter Text or URL</h3>
+        <input id="textvalue" type="text" placeholder="Text or url here..." />
+        <div id="imgdiv" class="imgbox">
+          <img id="imgsrc" src="" alt="qrimage" />
+        </div>
+        <button onclick="qrGenerator()">Generate QR</button>
+      </div>
+    </div>
+
+    <script>
+      const text = document.getElementById("textvalue");
+      const imgsrc = document.getElementById("imgsrc");
+      const imgdiv = document.getElementById("imgdiv");
+
+      function qrGenerator() {
+        if (text.value.length > 0) {
+          imgsrc.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text.value}`;
+          imgdiv.classList.add("showqr");
+        } else {
+          text.classList.add("vibrate");
+          setTimeout(() => text.classList.remove("vibrate"), 300);
+        }
+      }
+    </script>
+  </body>
+</html>
